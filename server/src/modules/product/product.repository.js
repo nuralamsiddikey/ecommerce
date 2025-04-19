@@ -73,6 +73,17 @@ class ProductRepository extends BaseRepository {
     });
   };
 
+  bulkDecrementStock = async (products) => {
+    const decrementPromises = products.map(product => 
+      this.#model.decrement('stock_qty', {
+        by: product.quantity,
+        where: { product_id: product.product_id }
+      })
+    );
+    
+    await Promise.all(decrementPromises);
+    return
+  }
 
   
   getProductDetails = async (productId) => {  

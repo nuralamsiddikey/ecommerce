@@ -21,9 +21,7 @@ class CartService extends BaseService {
 
   async getCartByCustomer(customer_id) {
     const carts = await this.#cartRepository.getCartByCustomer(customer_id);
-    if (carts.length === 0) {
-      throw new NotFoundError('Did not found carts');
-    }
+    
     return carts;
   }
 }

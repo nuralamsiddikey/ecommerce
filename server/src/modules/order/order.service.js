@@ -10,14 +10,14 @@ import db from '../../db/dbConnect.js';
 class OrderService extends BaseService {
   #orderRepository;
   #productRepository;
-  #cartRepository
+  #cartRepository;
   #serviceName;
 
-  constructor(repository, cartRepository,serviceName) {
-    super(repository, productRepository, serviceName);
+  constructor(repository,productRepository,cartRepository, serviceName) {
+    super(repository,serviceName);
     this.#orderRepository = repository;
     this.#productRepository = productRepository;
-    this.#cartRepository = cartRepository
+    this.#cartRepository = cartRepository;
     this.#serviceName = serviceName;
   }
 
@@ -59,7 +59,6 @@ class OrderService extends BaseService {
   }
 
   async createCartOrder(orderEntries, customer_id) {
-   
     const order = [];
     const cartIds = [];
     const products = [];
@@ -73,6 +72,10 @@ class OrderService extends BaseService {
         police_station: item.police_station,
         product_id: item.product_id,
         quantity: item.quantity,
+        address_line: item.address_line,
+        order_no: generateOrderNo(),
+        customer_id,
+
       });
     });
 
@@ -87,16 +90,22 @@ class OrderService extends BaseService {
       });
     });
 
-    await this.#orderRepository.createCartOrder(order)
-    await this.#cartRepository.deleteCarts(cartIds)
-
-    
-
+    await this.#orderRepository.createCartOrder(order);
+    await this.#cartRepository.deleteCarts(cartIds);
+    await this.#productRepository.bulkDecrementStock(products);
   }
+
+
+
 
   async getAllOrder(reqQuery) {
     return await this.#orderRepository.getAllOrder(reqQuery);
   }
 }
 
-export default new OrderService(orderRepository, productRepository, cartRepository,'order');
+export default new OrderService(
+  orderRepository,
+  productRepository,
+  cartRepository,
+  'order'
+);
