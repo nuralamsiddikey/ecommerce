@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+
+    /* == Theme Colour == */
+    --deep-black: #000000;
+    --medium-black: #4c4c4c;
+    --light-black: #8d8d8d;
+    --orange: #f95506;
+    --light-orange: #ffeae0;
+    --light-gray: #f5f5f5;
+    --light-green: #00c34e;
+    --deep-green: #007a83;
+
+    /* Updated Colour */
+    --primary-gray: #161616;
+    --primary-gray-opacity-60: rgba(22, 22, 22, 0.6); /* #161616; */
+    --secondary-gray: #434343;
+    --tertiary-gray: #4c4c4c;
+    --quaternary-gray: #8d8d8d;
+    --fifth-gray: #a1a1a1;
+
+    /* == End Theme Colour == */
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+  }
+}
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* container */
+.custom-container {
+  max-width: 1187px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+@media (max-width: 1200px) {
+  .custom-container {
+    padding: 0 10px;
+  }
+}
+@media (max-width: 640px) {
+  .min-sm-flex-col-reverse {
+    flex-direction: column-reverse !important;
+  }
+}
+
+/* ---------------------------------------------------------- */
+/* ---------------------------------------------------------- */
+/* Rounded Checkbox Start */
+/* ---------------------------------------------------------- */
+/* ---------------------------------------------------------- */
+
+.custom-circle-checkbox {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.custom-circle-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.custom-circle-checkbox .checkmark {
+  position: absolute;
+  top: 4px;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  border-radius: 15px;
+  border: 1px solid #c4c4c4;
+  transition: background-color 0.1s, border 0.1s;
+}
+
+.custom-circle-checkbox input:checked ~ .checkmark {
+  background-color: #f95506;
+  border: none; /* Remove border when checked */
+}
+
+.custom-circle-checkbox .checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.custom-circle-checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+.custom-circle-checkbox .checkmark:after {
+  left: 7px;
+  top: 3px;
+  width: 6px;
+  height: 11px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+/* ---------------------------------------------------------- */
+/* ---------------------------------------------------------- */
+/* Rounded Checkbox End */
+/* ---------------------------------------------------------- */
+/* ---------------------------------------------------------- */
+
+/* Inner border-bottom */
+.inner-border-bottom {
+  position: relative;
+}
+
+.inner-border-bottom::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #c4c4c4;
+}

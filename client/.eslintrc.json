@@ -1,0 +1,7 @@
+{
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "react/prop-types": "off",
+    "react/jsx-filename-extension": [2, { "extensions": [".jsx", ".tsx"] }]
+  }
+}
